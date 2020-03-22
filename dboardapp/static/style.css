@@ -1,0 +1,23 @@
+.navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+
+    /* the rest of your styling */
+}
+h4, h5, h6 {
+  font-family:  sans-serif;
+}
+
+
+.blue { color: #185875; }
+.yellow { color: #FFF842; }
+
+.container td {
+	  font-weight: normal;
+	  font-size: .8em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+	   -moz-box-shadow: 0 2px 2px -2px #0E1119;
+	        box-shadow: 0 2px 2px -2px #0E1119;
+}
+

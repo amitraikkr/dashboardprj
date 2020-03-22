@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<body>
+	<div class="container" style="margin-top: 70px">
+	
+		<nav class="navbar fixed-top navbar-expand-sm navbar-light" style="height: 70px;background-color: #0B3861">
+		<div class="navbar-nav align-items-center">
+  			<a class="navbar-brand text-white" href="#">Coronavirus (COVID-19)</a>
+  		</div>
+		<div class="navbar-nav align-items-center ml-auto">
+  			<span style="margin-right: 25px"><h4 class="text-white" >Canada :</h4></span>
+  			<span style="margin-right: 15px"><h5 class="text-warning">Confirmed : {{totalcandata.Confirmed}}</h5></span>
+  			<span style="margin-right: 15px"><h5 class="text-danger">Deaths : {{totalcandata.Deaths}}</h5></span>
+  			<span style="margin-right: 15px"><h5 class="text-success">Recovered : {{totalcandata.Recovered}}</h5></span>
+  		</div>
+		</nav>
+
+	<div style="margin-top: 20px">
+	<div class="row">
+		<div class="col-sm-2">
+
+			 <div class="card border-secondary mb-3" style="max-width: 15rem;text-align: center;margin-top: 5px">
+			  	<div class="card-header text-white" style="background-color: #FAAC58">India Cases</div>
+  				<div class="card-body">
+    			<h5 style="color:#555">Confirmed</h5>
+    			<p class="card-text" style="color:#aaa;font-size: 1.3em">{{india_data.Confirmed}}</p>
+    			<h5 style="color:#555">Deaths</h5>
+    			<p class="card-text" style="color:#aaa;font-size: 1.3em">{{india_data.Deaths}}</p>
+    			<h5 style="color:#555">Recovered</h5>
+    			<p class="card-text" style="color:#aaa;font-size: 1.3em">{{india_data.Recovered}}</p>
+  				</div>			
+	 		</dir>
+	 	</div>
+	 		<p class="font-weight-normal" style="font-size: .9em;font-family: sans-serif">Click <a href="https://www.mohfw.gov.in/" target="__blank"> here </a> to view real time updates in India</p>
+		</div>
+		<div class="col-sm-6">	
+	<!--<iframe src="https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6" height="350" width="680"></iframe>-->
+
+
+
+   			<div class="card border-secondary mb-3" style="max-width: 65rem;text-align: center;margin-top: 5px">
+			  	<div class="card-header text-white" style="background-color: #0B4C5F">Canada: Provinces Wise Cases</div>
+			  	<div class="card-body">
+			<table  style="text-align: center;font-size: 2;width: 100%">
+  				<thead>
+   				 <tr>
+   				 	<th style="text-align: left">Provinces</th>
+   				 	<th >Confirmed</th>
+   				 	<th >Deaths</th>
+   				 	<th >Recovered</th>
+   				 	<th >Active</th>
+   				 </tr>
+  			    </thead>
+  				<tbody>
+  					{% for row in canada_data %}
+  					<tr>
+						{% for col in row %}
+						{% if forloop.counter != 2 %}
+						 {% if forloop.counter == 1 %}
+				   			<td style="text-align: left">{{col}}</td>
+				   		 {% else %}
+				   		 	<td>{{col}}</td>
+				   		 {% endif %}
+						{% endif %}
+						
+						   				
+   				 {% endfor %}
+   				  </tr>
+   				 {% endfor %}
+   				</tbody>
+   			</table>
+   
+</div></div>
+<p class="font-weight-light" style="font-size: .6em;">***Source John Hopkin Resource Center</p>
+	<p class="font-weight-normal" style="font-size: 1em;font-family: sans-serif">These statistics are based on the latest data provided by John Hopkin Resource Center, please use below link to view most real time statistics</p>
+
+	<ul>
+		<li><p class="font-weight-normal" style="font-size: 1em">Wordometer Coronavirus Update, click <a href="https://www.worldometers.info/coronavirus/" target="__blank">here</a></p></li>
+		<li><p class="font-weight-normal" style="font-size: 1em">John Hopkin Interactive Map, click <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6" target="__blank">here</a></p></li>
+		<li><p class="font-weight-normal" style="font-size: 1em">Canada CTV Coronavirus Updates, click <a href="https://www.ctvnews.ca/health/coronavirus/tracking-every-case-of-covid-19-in-canada-1.4852102" target="__blank">here</a></p></li>
+	</ul>
+		
+
+	</div>
+
+
+
+
+
+ 		<div class="col-sm-4">
+
+ 				<div class="card border-secondary mb-3" style="max-width: 28rem;text-align: center;margin-top: 5px">
+			  	<div class="card-header text-white" style="background-color: #FAAC58">World-Wide Cases</div>
+  				<div class="card-body">
+    			<h5 class="card-title" style="color:#555">Total Confirmed</h5>
+    			<p class="card-text" style="color:#aaa;font-size: 1.3em">{{totalcounts.Confirmed}}</p>
+    			<h5 class="card-title" style="color:#555">Total Deaths</h5>
+    			<p class="card-text" style="color:#aaa;font-size: 1.3em">{{totalcounts.Deaths}}</p>
+    			<h5 class="card-title" style="color:#555">Total Recovered</h5>
+    			<p class="card-text" style="color:#aaa;font-size: 1.3em">{{totalcounts.Recovered}}</p>
+  				</div>			
+	 		</dir>
+	 	</div>
+				<div class="card border-secondary mb-3" style="max-width: 30rem;text-align: center;margin-top: 5px">
+			  	<div class="card-header text-white" style="background-color: #FAAC58">Ten Most Affected Countries</div>
+  				<div style="margin-right: 4px;margin-left: 4px;margin-bottom: 4px;margin-top: 4px">
+
+<table  style="width: 100%">
+	<thead>
+		<tr>
+			<th style="text-align: left">Country</th>
+			<th>Confirmed</th>
+			<th>Deaths</th>
+			<th>Recovered</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for i, row in toptenresult.iterrows %}
+
+		<tr>
+				<td style="text-align: left">{{row.name}}</td>
+			<td >{{row.Confirmed}}</td>
+			<td >{{row.Deaths}}</td>
+			<td >{{row.Recovered}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+
+  				</div>			
+	 		</dir>
+
+ 			</div>
+
+ 		</div>
+</div>
+
+	<footer class=" font-small blue" style="background-color: #303040;width=100%">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3" >© 2020 Copyright:
+    <a href=""> Amit Rai</a>
+
+  </div>
+  <!-- Copyright -->
+
+</footer>
+	</div>
+	<script
+	src="http://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
