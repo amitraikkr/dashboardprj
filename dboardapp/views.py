@@ -4,8 +4,12 @@ from bs4 import BeautifulSoup as BSoup
 from matplotlib import pyplot as plt
 import pandas as pd
 import datetime
-
+import matplotlib.pyplot as plt
 import plotly.express as px
+from plotly.offline import plot
+import plotly.graph_objs as go
+
+import numpy as np
 
 
 def dashboard(request):
@@ -22,27 +26,37 @@ def dashboard(request):
 
 	totalcounts = covid_data.sum()
 
-	toptenresult = covid_data.groupby('Country/Region')['Country/Region', 'Confirmed', 'Deaths', 'Recovered'].sum().sort_values(by='Confirmed', ascending=False)[:10]
+	covid_data['Deathsrate'] = ((covid_data['Deaths'] / covid_data['Confirmed']) * 100)
+	covid_data['Recoveredrate'] = ((covid_data['Recovered'] / covid_data['Confirmed']) * 100)
 	
-	canada_data = covid_data[covid_data['Country/Region']=='Canada'].drop(['Country/Region','Latitude', 'Longitude'], axis=1)
-	totalcandata = canada_data.sum()
+	toptenresult = covid_data.groupby('Country_Region')['Country_Region', 'Confirmed', 'Deaths', 'Deathsrate','Recovered','Recoveredrate'].sum().sort_values(by='Confirmed', ascending=False)[:50]
 	
-	canada_data['Active'] = canada_data['Confirmed'] - canada_data['Deaths'] - canada_data['Recovered']
-	canada_data = canada_data[canada_data.sum(axis = 1) > 0]
- 
-	canada_data=canada_data.values.tolist()
-	
-	india_data = covid_data[covid_data['Country/Region']=='India'].drop(['Province/State','Latitude', 'Longitude'], axis=1)
-	india_data = india_data.sum()
-	
+	covid_data12 = covid_data.groupby('Country_Region').sum()
+
+	temp_df = pd.DataFrame(covid_data12['Confirmed'])
+	temp_df = temp_df.reset_index()
+
+	fig = px.choropleth(temp_df, locations="Country_Region",
+                   color=np.log10(temp_df.iloc[:,-1]),
+                   hover_name="Country_Region",
+                   hover_data=["Confirmed"],
+                   color_continuous_scale=px.colors.sequential.Plasma,locationmode="country names")
+
+	fig.update_geos(fitbounds="locations", visible=False)
+	fig.update_coloraxes(colorbar_title="Confirmed Cases",colorscale="Blues")
+
+	plt_div = plot(fig, output_type='div')
+	#print(plt_div)
+
 	context = dict(
         toptenresult=toptenresult,
-        canada_data=canada_data,
-        india_data=india_data,
         totalcounts=totalcounts,
-        totalcandata=totalcandata
+        pltdiv=plt_div,
     )
 
 
 	return render(request, "home.html",context)
 
+def graph_view(request):
+
+	return render(request,"graphvw.html")

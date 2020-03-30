@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<body>
+	<div  style="margin-top: 70px;margin-left: 15px;margin-right: 15px">
+	
+		<nav class="navbar fixed-top navbar-expand-sm navbar-light" style="background-color: #D8D8D8">
+		<div class="navbar-nav align-items-center">
+  			<a class="navbar-brand" href="#">Coronavirus (COVID-19)</a>
+  		</div>
+		<div class="navbar-nav align-items-center ml-auto">
+		    <ul class="navbar-nav">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="{% url 'graphvw' %}">Study</a>
+		      </li>
+
+		    </ul>
+		 </div>
+		</nav>
+
+		 {% block content %}
+     {% endblock %}
+
+
+
+     	<footer class=" font-small blue" style="background-color: #303040;width=100%">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3" >© 2020 Copyright:
+    <a href=""> Amit Rai</a>
+
+  </div>
+  <!-- Copyright -->
+
+</footer>
+	</div>
+	<script
+	src="http://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
