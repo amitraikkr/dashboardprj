@@ -5,7 +5,22 @@
 
 
 <div style="margin-top: 20px">
-	<h1>Testing Page ...</h1>
+<div class="row">
+	<div class="col-sm-2">
+
+	</div>
+	<div class="col-sm-8" style="align:center">	
+	  {% autoescape off %}
+			  {{plt_divcnf}}
+			  {{plt_divdth}}
+			  {{plt_divrcvr}}
+			  {{ctrypattrn}}
+			  {{grph_cnfrate}}
+	  {% endautoescape %}
+	</div>
+	<div class="col-sm-2">
+
+	</div>
 </div>
 
 {% endblock %}
